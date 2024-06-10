@@ -1,14 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.g.dart';
+// part 'user.freezed.dart';
 
 @JsonSerializable()
 class User {
-  @JsonKey(name: '_id')
+  @JsonKey(name: 'id')
   final int id;
 
-  @JsonKey(defaultValue: 18)
-  final int? age; // si no queremos que el valor sea nulo le agregamos el default value
+  // @JsonKey(defaultValue: 18)
+  // final int? age; // si no queremos que el valor sea nulo le agregamos el default value
 
   final String username;
   // fromJson sirve para nos entregue los subcampos de un json
@@ -21,21 +23,24 @@ class User {
 
   // por ejemplo supongamos que el campo Hash es una convinacion entre el campo username y el campo id
   // entonces en este caso se usa el readValue para leer el json completo y obtener el valor de los campos username y id
-  @JsonKey(readValue: _readHash)
-  final String hash;
+  // @JsonKey(readValue: _readHash)
+  // final String hash;
 
-  final DateTime birthday;
+  // final DateTime birthday;
 
-  final UserType type;
+  // final UserType type;
+
+  final List<Occupation> occupations;
 
   User({
     required this.id,
     required this.username,
     required this.avatar,
-    required this.hash,
-    required this.birthday,
-    required this.type,
-    this.age,
+    required this.occupations,
+    // required this.hash,
+    // required this.birthday,
+    // required this.type,
+    // this.age,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -46,34 +51,36 @@ class User {
     int? id,
     String? username,
     String? avatar,
-    String? hash,
-    int? age,
-    DateTime? birthday,
-    UserType? type,
+    List<Occupation>? occupations,
+    // String? hash,
+    // int? age,
+    // DateTime? birthday,
+    // UserType? type,
   }) =>
       User(
         id: id ?? this.id,
         username: username ?? this.username,
         avatar: avatar ?? this.avatar,
-        hash: hash ?? this.hash,
-        age: age ?? this.age,
-        birthday: birthday ?? this.birthday,
-        type: type ?? this.type,
+        occupations: occupations ?? this.occupations,
+        // hash: hash ?? this.hash,
+        // age: age ?? this.age,
+        // birthday: birthday ?? this.birthday,
+        // type: type ?? this.type,
       );
 }
 
-enum UserType {
-  @JsonValue(1)
-  admin,
-  @JsonValue(0)
-  normal,
-}
+// enum UserType {
+//   @JsonValue(1)
+//   admin,
+//   @JsonValue(0)
+//   normal,
+// }
 
-String _readHash(Map json, String _) {
-  String username = json['username'];
-  int id = json['_id'];
-  return '$username$id';
-}
+// String _readHash(Map json, String _) {
+//   String username = json['username'];
+//   int id = json['_id'];
+//   return '$username$id';
+// }
 
 String _readAvatar(Map json, String key) {
   String path = json['avatar']['tmdb']['avatar_path'];
@@ -84,3 +91,17 @@ String _readAvatar(Map json, String key) {
 //   String path = data['tmdb']['avatar_path'];
 //   return path;
 // }
+
+@JsonSerializable()
+class Occupation {
+  final int id;
+  final String name;
+
+  Occupation({
+    required this.id,
+    required this.name,
+  });
+
+  factory Occupation.fromJson(Map<String, dynamic> json) =>
+      _$OccupationFromJson(json);
+}

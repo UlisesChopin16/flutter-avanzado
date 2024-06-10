@@ -7,13 +7,24 @@
       "avatar_path": "https://image.tmdb.org/t/p/w500/jOl2OWDB662dKreKY2FoYAh1mg3.jpg"
     }
   },
-  "_id": 15160447,
+  "id": 15160447,
   "iso_639_1": "es",
   "iso_3166_1": "US",
   "name": "",
   "include_adult": false,
-  "username": "meedu",
-  "age": 20,
-  "birthday": "1997-12-16",
-  "type": 1
+  "username": "Ulises",
+  "occupations": [
+    {
+      "id": 123,
+      "name": "Flutter developer"
+    },
+    {
+      "id": 124,
+      "name": "Android developer"
+    },
+    {
+      "id": 125,
+      "name": "Web developer"
+    }
+  ]
 }

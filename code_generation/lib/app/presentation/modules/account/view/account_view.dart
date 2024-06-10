@@ -42,9 +42,9 @@ class _AccountViewState extends State<AccountView> {
                   const Text('Account'),
                   Text('ID: ${_user!.id}'),
                   Text('Name: ${_user!.username}'),
-                  Text('Age: ${_user!.age}'),
-                  Text('Hash: ${_user!.hash}'),
-                  Text('Birthday: ${_user!.birthday}'),
+                  // Text('Age: ${_user!.age}'),
+                  // Text('Hash: ${_user!.hash}'),
+                  // Text('Birthday: ${_user!.birthday}'),
                   Image.network(
                     _user!.avatar,
                   ),
